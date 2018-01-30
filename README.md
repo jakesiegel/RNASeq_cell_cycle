@@ -6,6 +6,7 @@ A development project to use single-cell RNA-seq data to build a model of transc
 The project is initially training on data from Karlsson et al.  JMB 2017, "Transcriptomic Characterization of Human Cell Cycle in Individual Unsynchronized Cells".
 
 An additional labelled dataset is available from Leng et al. Nature Methods 2015, "Oscope identifies oscillatory genes in unsynchronized single-cell RNA-seq experiments", and may need to be used, although hESCs have sufficiently unique cell cycle transcriptomics that I would prefer use differentiated cells (even if cancerous), if possible.
+
 Additional unlabelled single-cell RNA-seq data from various sources is available from the ARCHS4 web resource and will be used as the test data.
 
 The workflow will be as follows:
@@ -18,10 +19,11 @@ The workflow will be as follows:
 - Finally, compare the pre-trained and final models to identify edges and nodes that are differently weighted in the different populations.
 
 Current status:
-The supervised classifier is not performing as well as desired.  I am investigating unsupervised clustering to see if cytometric cell cycle staging is the best way to classify the data
+All work is still in the exploratory notebooks.  Minimal refactoring has been done so far.
 
-The ARCHS4 data is processed using Kallisto and a more recent annotation than the Karlsson paper used.  Before deploying, I will need to reprocess that fasta files so that all the data is preprocessed consistently.
+The supervised classifier is not performing as well as desired.  Correctly tuning the models are challenging.  I think this is mostly due to the fact that the Karlsson data set is small.  I think I have an idea to make the modeling more stable to allow for better tuning, but I want to check if the labels are the correct way to classify this data.  To do that, I am investigating unsupervised clustering to see if cytometric cell cycle staging gives a natural clustering of transcription.
 
+The ARCHS4 data is all processed using Kallisto and a more recent annotation than the Karlsson paper used.  Before deploying, I will need to reprocess that fasta files so that all the data is preprocessed consistently.  This is fortunate because, unlike STAR, I can run kallisto locally.
 
 
 Project Organization
