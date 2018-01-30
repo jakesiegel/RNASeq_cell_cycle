@@ -1,7 +1,28 @@
-RNASeq_Network
-==============================
+RNAseq_cell_cycle
+=============================
 
-A project to use single cell RNA Seq data to buld a model of gene regulatory networks during the cell cycle and see which nodes are compromised in cell cycle disease data.
+A development project to use single-cell RNA-seq data to build a model of transcription during the cell cycle and use it to identify interactions impacted in different populations of single cells with various cell cycle diseases (primarily cancers).
+
+The project is initially training on data from Karlsson et al.  JMB 2017, "Transcriptomic Characterization of Human Cell Cycle in Individual Unsynchronized Cells".
+
+An additional labelled dataset is available from Leng et al. Nature Methods 2015, "Oscope identifies oscillatory genes in unsynchronized single-cell RNA-seq experiments", and may need to be used, although hESCs have sufficiently unique cell cycle transcriptomics that I would prefer use differentiated cells (even if cancerous), if possible.
+Additional unlabelled single-cell RNA-seq data from various sources is available from the ARCHS4 web resource and will be used as the test data.
+
+The workflow will be as follows:
+- Read-counts are normalized to TPM.
+- A supervised classifier is built to predict cell cycle stage.
+- The classifier is used to label unlabelled cells in other datasets.
+- Cell-cycle trajectories are built from individual cells.
+- A multi-dimensional LTSM RNN is built to model the cell cycle transcriptome for the labelled data.
+- Then do transfer learning on the new data.
+- Finally, compare the pre-trained and final models to identify edges and nodes that are differently weighted in the different populations.
+
+Current status:
+The supervised classifier is not performing as well as desired.  I am investigating unsupervised clustering to see if cytometric cell cycle staging is the best way to classify the data
+
+The ARCHS4 data is processed using Kallisto and a more recent annotation than the Karlsson paper used.  Before deploying, I will need to reprocess that fasta files so that all the data is preprocessed consistently.
+
+
 
 Project Organization
 ------------
