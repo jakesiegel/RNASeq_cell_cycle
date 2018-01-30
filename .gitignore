@@ -1,0 +1,5 @@
+# Ignore the XGBoost directory
+xgboost/
+
+#Ignore all gencode files
+*.gtf
